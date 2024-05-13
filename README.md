@@ -3,7 +3,7 @@
 #### Directed Reading Program 2024
 ##### Catherine Chen and Anna Li, mentored by Marcos Reyes
 
-[Click here to access the Elliptic Curve Torsion Calculator](https://replit.com/@cchen935/Elliptical-Curve)
+[Click here to access the Elliptic Curve Torsion Calculator](https://replit.com/@annajli/Elliptic-Curve-Calculator)
 
 This year, our project focuses on researching the properties of Weierstrass Elliptic Curves and computing its torsion over the rationals. Weierstrass elliptic curves are represented in the form y^2 = x^3 + Ax^2 + Bx^2 + C, where A, B, and C are integers.
 
