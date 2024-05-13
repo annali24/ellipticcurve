@@ -1,7 +1,7 @@
 # Exploring Rational Points on Weierstrass Elliptic Curves
 
 **Directed Reading Program 2024**
-**Catherine Chen and Anna Li, mentored by Marcos Reyes**
+Catherine Chen and Anna Li, mentored by Marcos Reyes**
 
 [Click here to access the Elliptic Curve Torsion Calculator](https://replit.com/@cchen935/Elliptical-Curve)
 
