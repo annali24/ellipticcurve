@@ -1,11 +1,11 @@
 # Exploring Rational Points on Weierstrass Elliptic Curves
 
-### Directed Reading Program 2024
-### Catherine Chen and Anna Li, mentored by Marcos Reyes
+*** Directed Reading Program 2024
+***Catherine Chen and Anna Li, mentored by Marcos Reyes
 
 [Click here to access the Elliptic Curve Torsion Calculator](https://replit.com/@cchen935/Elliptical-Curve)
 
-This year, we decided to research Weierstrass Elliptic Curves and its torsion. 
+Our project this year relates to researching the properties of Weierstrass Elliptic Curves and computing its torsion over the rationals. Weierstrass elliptic curves are __ written as y^2 = x^3 + ax^2 + bx^2 + c
 
 ## Education
 - Ph.D., Physics | The University of Texas at Dallas (_May 2022_)								       		
