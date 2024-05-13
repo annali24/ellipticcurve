@@ -3,7 +3,7 @@
 ### Directed Reading Program 2024
 ### Catherine Chen and Anna Li, mentored by Marcos Reyes
 
-##[Click here to access the Elliptic Curve Torsion Calculator](https://replit.com/@cchen935/Elliptical-Curve)
+[Click here to access the Elliptic Curve Torsion Calculator](https://replit.com/@cchen935/Elliptical-Curve)
 
 This year, we decided to research Weierstrass Elliptic Curves and its torsion. 
 
