@@ -1,0 +1,137 @@
+import math
+import sympy
+from mainfunctions import *
+
+#ask user for input
+print("Welcome to the elliptic curve torsion calculator!")
+print(
+    "Please enter the integer values for A, B, and C based on the equation of the elliptic curve in Weierstrass form y^2 = x^3 + Ax^2 + Bx + C:"
+)
+
+
+#get user input
+def get_user_input(prompt):
+  while True:
+    user_input = input(prompt)
+    if not user_input.strip('-').isdigit():
+      print("Error! Please enter an integer value.")
+    else:
+      return user_input
+
+
+#prompt user to enter A, B, and C values
+a = int(get_user_input("Enter the value for 'A': "))
+b = int(get_user_input("Enter the value for 'B': "))
+c = int(get_user_input("Enter the value for 'C': "))
+
+#find discriminant
+discr = Finddiscrim(a, b, c)
+print("The discriminant is:", discr)
+
+#Check that it's a smooth curve (when discriminant != 0)
+while discr == 0:
+  print("Error! The curve is not a smooth curve. Input a new value.")
+
+  a = int(get_user_input("Enter another value for 'A': "))
+  b = int(get_user_input("Enter another value for 'B': "))
+  c = int(get_user_input("Enter another value for 'C': "))
+  discr = Finddiscrim(a, b, c)
+
+#The main program for computing all the rational points of the Elliptical Curve
+
+#determine the order of the possiblie torsion points
+
+#FIXME: Run through all the possiblepoints and find its order, instead of just choosing one.
+
+# if n>12, move onto next possiblepoint (delete point or make new list w/o that one)
+
+orderdictionary = {}
+listoffactors = Squaredfactors(discr)
+possiblepoints1 = findPoints(a, b, c, listoffactors)
+#print(possiblepoints)
+
+#print(possiblepoints)
+
+point2 = pointfinder(a, b, c)
+possiblepoints1.extend(point2)
+
+possiblepoints = [
+    x for i, x in enumerate(possiblepoints1) if x not in possiblepoints1[:i]
+]
+
+#print(possiblepoints)
+#One of the few cases that fails to pass for some reason so it's been hard-coded
+
+n = 0
+for i in possiblepoints:
+  pointlist = findtorsiongroup(i, a, b, c)
+  if pointlist == []:
+    break
+  if len(pointlist) < 12:
+    for i in pointlist:
+      if i not in possiblepoints:
+        possiblepoints.append(i)
+      else:
+        pass
+
+  if len(pointlist) != 16 and len(pointlist) > 12:
+    orderdictionary[n] = "infinite"
+  else:
+    orderdictionary[n] = len(pointlist) + 1
+
+  n = n + 1
+
+possiblepoints.append(['e'])
+#print(possiblepoints)
+#e stands for the point at infinity
+
+#Code for computing the order
+order = 0
+infinitepoints = []
+for key, value in orderdictionary.items():
+  if value == "infinite" or (12 < value < 16):
+    infinitepoints.append(key)
+  else:
+    if value > order:
+      order = value
+
+#For differentiating the cases of order 4, 8, and 12
+if orderdictionary == {}:
+  print("The order of the torsion group is trivial")
+  quit()
+#Counter
+
+a = len(orderdictionary)
+n = 0
+while n < a:
+  if orderdictionary[n] == "infinite":
+    del orderdictionary[n]
+    del possiblepoints[n]
+
+  n += 1
+
+maxorder = max(orderdictionary.values())
+if len(possiblepoints) == order:
+  pass
+else:
+  if (len(possiblepoints)) == 4 and maxorder == 2:
+    order = "2 X 2"
+  if (len(possiblepoints)) == 8 and maxorder == 4:
+    order = "2 X 4"
+  if (len(possiblepoints)) == 12 and maxorder == 6:
+    order = "2 X 6"
+  if (len(possiblepoints)) == 16 and maxorder == 8:
+    order = "2 X 8"
+
+#Final display
+if order != 0:
+  print("The order of the torsion group is", order)
+  print(orderdictionary)
+  print("These are the rational points: ", possiblepoints[0:-1])
+
+else:
+  print("The order of the torsion group is trivial")
+
+#showing the order to the user
+
+#(0,0,8 )
