@@ -1,0 +1,178 @@
+import math
+from sympy import *
+from sympy.abc import x
+#This File contains the functions for computing the actual points on the elliptical curve
+
+#Compute the starting point using the given ellipical curve equation and moving the y^2 to the other side. Use sympy solve() function to do this. (def FindPoints)
+
+#Alvaro function
+
+#Initialize a Dictionary to handle groups of order 4 and order 8. The dictionary will store the max order of the torsion group.
+
+#webscrape LMFDB to get the generators
+
+
+def Finddiscrim(a, b, c):
+  discr = (-4 * (a**3) * c) + ((a**2) *
+                               (b**2)) + (18 * a * b * c) - (4 *
+                                                             (b**3)) - (27 *
+                                                                        (c**2))
+  return discr
+
+
+#missing x 16 in discr
+#print("Here", Finddiscrim(0, -1, 0))
+
+
+def Squaredfactors(discr):
+  '''Parameters:
+  discr[int]: The discriminant of the equation
+  FIXME: Change the for loop to run from 1 to the squared of the discriminant. Then check 108 congruent to modulo
+  y^2 factorlist elements squared.'''
+  newlist = []
+  discr = abs(discr)
+
+  for y in range(1, round(math.sqrt(discr))):
+    if discr % (y**2) == 0:
+      newlist.append(y)
+
+  return newlist
+
+
+listt = Squaredfactors(-432)
+
+
+def PplusP(points, a, b, c):
+  '''Parameters: given points[list] of the curve (a, b, c) [int], generates x coordinate and y coordinate of 2P using duplication formula. '''
+
+  x, y = symbols('x y')
+  x1, y1 = points[0], points[1]
+
+  xcoord = (x1**4 - 2 * b * x1**2 - 8 * c * x1 + b**2 -
+            4 * a * c) / (4 * x1**3 + 4 * a * x1**2 + 4 * b * x1 + 4 * c)
+
+  m = (3 * x1**2 + 2 * a * x1 + b) / (2 * y1)
+  ycoord = -(m * (xcoord - x1) + y1)
+
+  return [int(xcoord), int(ycoord)]
+
+
+#print(PplusP([1, 1], -1, 1, 0))
+
+
+def PplusNP(point1, point2, a, b, c):
+  x1, y1 = point1[0], point1[1]
+  x2, y2 = point2[0], point2[1]
+
+  if x2 - x1 == 0:
+    return point1
+
+  slope = (y2 - y1) / (x2 - x1)
+
+  x3 = slope**2 - a - x1 - x2
+  y3 = -(slope * (x3 - x1) + y1)
+
+  return [int(x3), int(y3)]
+
+
+#print(PplusNP([-1,1], [-11/9, -17/27], 0, -1, 1))
+
+
+#calculates all possible torsion points from the discriminant
+def findPoints(a, b, c, newlist):
+  '''Parameters: valid y values in newlist found through Squaredfactors. Finds the x values of the points on the elliptical curve using the equation of the elliptical curve'''
+  x, y = symbols('x y')
+
+  points = []
+
+  for y in newlist:
+    curve = Eq(x**3 + a * x**2 + b * x + c - y**2, 0)
+    x_value = solve(curve, x)
+
+    for i in x_value:
+      if i.is_integer:
+        points.append([i, y])
+      else:
+        continue
+  return points
+
+
+#print(findPoints(0,-43,166, listt))
+
+
+#calculates the points found from solving the elliptical curve equation
+def pointfinder(a, b, c):
+  points = []
+  x, y = symbols('x y')
+  curve = Eq(x**3 + (a * x**2) + (b * x) + c, 0)
+  curve2 = Eq(y**2, c)
+
+  x_value = solve(curve, x)
+  #print(x_value)
+  y_value = solve(curve2, y)
+
+  for i in y_value:
+    if i.is_integer or i == 0:
+      points.append([0, i])
+    else:
+      continue
+  for i in x_value:
+    if i.is_integer or i == 0:
+      y = i**3 + a * i**2 + b * i + c
+      points.append([i, y])
+    else:
+      continue
+  return points
+
+
+#print(pointfinder(0, -43, 166))
+
+#determine the order of the possiblie torsion points
+
+#FIXME: Run through all the possiblepoints and find its order, instead of just choosing one.
+
+# if n>12, move onto next possiblepoint (delete point or make new list w/o that one)
+
+#add (-1,0) at end if contains points of order 2 (for every curve?)
+
+
+def findtorsiongroup(startpoint, a, b, c):
+  n = 0  #counter
+  storage = startpoint
+  listofpoints = [startpoint]
+  newpoint = [0, 0]
+
+  while n < 13:
+    if startpoint[1] == 0:
+      break
+    if (newpoint[0] == storage[0] and newpoint[1] == storage[1]):
+      return []
+    if (newpoint[0] == startpoint[0] and newpoint[1] == -startpoint[1]):
+
+      n = n + 1
+      break
+
+    elif n == 0:
+      #print("Startpoint", startpoint)
+      newpoint = PplusP(startpoint, a, b, c)
+      listofpoints.append(newpoint)
+      #print("Newpoint", newpoint)
+
+    else:
+      #print("Startpoint", startpoint)
+      newpoint = PplusNP(startpoint, newpoint, a, b, c)
+      listofpoints.append(newpoint)
+      #print("Newpoint", newpoint)
+
+    n = n + 1
+
+  return listofpoints
+
+
+#findtorsiongroup([-1, 0], 0, 0, 1)
+
+#cases for order 4, 8, 12
+# if any element has order 4, then z4. else, z2xz2
+# if any element has order 8, then z8. else, z4xz2
+# if any element has order 12, then z12. else, z6xz2
+# if there 16 elements, then z8xz2 (no single elemnt has order over 12)
