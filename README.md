@@ -1,4 +1,4 @@
-# Exploring Rational Points on Weierstrass Elliptic Curves
+# Exploring Rational Points on Elliptic Curves
 
 #### Directed Reading Program 2024
 ##### Catherine Chen and Anna Li, mentored by Marcos Reyes
