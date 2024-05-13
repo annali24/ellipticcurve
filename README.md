@@ -7,7 +7,8 @@
 
 This year, our project focuses on researching the properties of Weierstrass Elliptic Curves and computing its torsion over the rationals. Weierstrass elliptic curves are represented in the form y^2 = x^3 + Ax^2 + Bx + C, where A, B, and C are integers.
 
-##How it Works##
+## How it Works
+
 The calculator will ask you to input three integers for A, B, and C which represents the variables in the elliptical curve equation y^2 = x^3 + Ax^2 + Bx + C. This is the affine version of the equation. 
 **The Algorithm**
 First, by utilizing Nagell Lutz's Theorem, we will calculate the discriminant and determine the multiples. These would be possible y-values of the equation. Then, we check if y^2 would divide the discriminant and take those values and plug it into the cruve to see if we get an integer value for x. 
