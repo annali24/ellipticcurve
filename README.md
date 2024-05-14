@@ -8,7 +8,7 @@
 This year, our project focuses on researching the properties of Weierstrass Elliptic Curves and computing its torsion over the rationals. Weierstrass elliptic curves are represented in the form y^2 = x^3 + Ax^2 + Bx + C, where A, B, and C are integers.
 
 
-## How it Works
+### How it Works
 
 The calculator will ask you to input three integers for A, B, and C which represents the variables in the elliptical curve equation y^2 = x^3 + Ax^2 + Bx + C. This is the affine version of the equation. 
 
