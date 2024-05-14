@@ -10,7 +10,7 @@ This year, our project focuses on researching the properties of Weierstrass Elli
 
 ### How it Works
 
-The calculator will ask you to input three integers for A, B, and C which represents the variables in the elliptical curve equation y² = x^3 + Ax² + Bx + C. This is the affine version of the equation. 
+The calculator will ask you to input three integers for A, B, and C which represents the variables in the elliptical curve equation y² = x³ + Ax² + Bx + C. This is the affine version of the equation. 
 
 **The Algorithm**
 
