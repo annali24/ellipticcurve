@@ -5,7 +5,7 @@
 
 [Click here to view our poster](https://replit.com/@annajli/Elliptic-Curve-Calculator)
 
-This year, our project focuses on researching the properties of Weierstrass Elliptic Curves and computing its torsion over the rationals. Weierstrass elliptic curves are represented in the form y^2 = x^3 + Ax^2 + Bx + C, where A, B, and C are integers.
+This year, our project focuses on researching the properties of Weierstrass Elliptic Curves and computing its torsion over the rationals. Weierstrass elliptic curves are represented in the form y^2 = x³ + Ax^2 + Bx + C, where A, B, and C are integers.
 
 
 ### How it Works
