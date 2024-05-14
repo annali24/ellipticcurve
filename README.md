@@ -16,7 +16,7 @@ The calculator will ask you to input three integers for A, B, and C which repres
 
 First, by utilizing Nagell Lutz's Theorem, we will calculate the discriminant and determine the multiples. These would be possible y-values of the equation. Then, we check if y^2 would divide the discriminant and take those values and plug it into the curve to see if we get an integer value for x. 
 
-Secondly, we take the possible points we found and go thorugh the process of generating all the rational points with addition defined under the group structure. 
+Secondly, we take the possible points we found and go through the process of generating all the rational points with addition defined under the group structure. 
 
 Thirdly, we compute the order of these points to determine the order of the entire torsion group for the curve. Mazur's Theorem states that for a non singular rational cubic curve E(Q), the order is between 1 and 10 or is exactly 12, or Z2 X Z(2M), where M = 1, 2, 3, or 4. 
 
