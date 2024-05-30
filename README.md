@@ -3,7 +3,7 @@
 
 [Click here to access the Elliptic Curve Torsion Calculator](https://replit.com/@cchen935/Elliptical-Curve)
 
-[Click here to view our poster](https://acrobat.adobe.com/id/urn:aaid:sc:US:fab5a94d-c190-4e1e-8676-f53c1ea8b774)
+[Click here to view our poster](https://drive.google.com/file/d/1HX9-utCzTshEI7Hccoh5JVu9EqMdhRkI/view?usp=sharing)
 
 This year, our project focuses on researching the properties of Weierstrass Elliptic Curves and computing its torsion over the rationals. Weierstrass elliptic curves are represented in the form y² = x³ + Ax² + Bx + C, where A, B, and C are integers.
 
